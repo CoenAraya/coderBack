@@ -1,0 +1,195 @@
+Pasos a seguir en MogoDb :
+
+
+//Crear base de datos con nombre ecommerce
+use ecommerce;
+
+//Crear collection de mensajes y productos
+db.createCollection('mensajes');
+db.createCollection('productos');
+
+//Insertar 10 productos
+db.productos.insertMany([
+    {
+        "title": "Sillon simple",
+        "price": 120,
+        "Descripcion": "Descripcion",
+        "code": "codigo-1",
+        
+    },
+    {
+        "title": "Sillon doble",
+        "price": 580,
+        "Descripcion": "Descripcion",
+        "code": "codigo-2",
+        
+    },
+    {
+        "title": "Colchon",
+        "price": 900,
+        "Descripcion": "Descripcion",
+        "code": "codigo-3",
+        
+    },
+    {
+        "title": "Cama cucheta",
+        "price": 1280,
+        "Descripcion": "Descripcion",
+        "code": "codigo-4",
+        
+    },
+    {
+        "title": "Sommier",
+        "price": 1700,
+        "Descripcion": "Descripcion",
+        "code": "codigo-5",
+        
+    },
+    {
+        "title": "Colchon King",
+        "price": 2300,
+        "Descripcion": "Descripcion",
+        "code": "codigo-6",
+        
+    },
+    {
+        "title": "Colchon Queen",
+        "price": 2860,
+        "Descripcion": "Descripcion",
+        "code": "codigo-7",
+        
+    },
+    {
+        "title": "Colchon y Sommier simple",
+        "price": 3300,
+        "Descripcion": "Descripcion",
+        "code": "codigo-8",
+        
+    },
+    {
+        "title": "Colchon y Sommier King",
+        "price": 4300,
+        "Descripcion": "Descripcion",
+        "code": "codigo-9",
+        
+    },
+    {
+        "title": "Colchon y Sommier Queen",
+        "price": 4900,
+        "Descripcion": "Descripcion",
+        "code": "codigo-10",
+        
+    },
+])
+
+//Insertar 10 mensajes
+db.mensajes.insertMany([
+    {
+        "timestamp": 1669867800967,
+        "email": 'Javier@gmail.com',
+        "message": 'Inserte un mensaje aqui'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'Javier@gmail.com',
+        "message": 'Inserte un mensaje aqui'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'Javier@gmail.com',
+        "message": 'Inserte un mensaje aqui'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'Javier@gmail.com',
+        "message": 'Inserte un mensaje aqui'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'Javier@gmail.com',
+        "message": 'Inserte un mensaje aqui'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'Javier@gmail.com',
+        "message": 'Inserte un mensaje aqui'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'Javier@gmail.com',
+        "message": 'Inserte un mensaje aqui'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'Javier@gmail.com',
+        "message": 'Inserte un mensaje aqui'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'Javier@gmail.com',
+        "message": 'Inserte un mensaje aqui'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'Javier@gmail.com',
+        "message": 'Inserte un mensaje aqui'
+    },
+])
+
+//Listar documentos de cada coleccion
+db.productos.find();
+db.mensajes.find();
+
+//Contar la cantidad de documentos en cada coleccion
+db.productos.countDocuments();
+db.mensajes.countDocuments();
+
+//Agregar un producto en la coleccion "productos"
+db.productos.insertOne({
+
+    "title": "Sommier Deluxe",
+    "price": 4995,
+    "Descripcion": "Descripcion",
+    "code": "codigo-11",
+
+});
+
+//Realizar una consulta por nombre de un producto especifico
+db.productos.find({title: "Sommier Deluxe"});
+
+//Listar los productos con precio menor a 1000
+db.productos.find({price: {$lt: 1000}});
+
+//Listar los productos con precio entre los 1000 a 3000
+db.productos.find({price: {$in: [1000, 3000]}});
+
+//Listar los productos con precio mayor a 3000
+db.productos.find({price: {$gt: 3000}});
+
+//Realizar una consulta que traiga solo el nombre del tercer productos mas barato
+db.productos.find().sort({price: 1}).skip(2).limit(1);
+
+//Hacer una actualizacion sobre todos los productos, agregando el campo stock a todos ellos con un valor de 100
+db.productos.updateMany({}, {$inc: {stock: 100}});
+
+//Cambiar el stock a cero de los productos con precios mayores a 4000
+db.productos.updateMany({price: {$gt: 4000}}, {$set: {stock: 0}});
+
+//Borrar los productos con un precio menor a 1000
+db.productos.deleteMany({price: {$lt: 1000}});
+
+//Crear un usuario 'pepe' clave: 'asd456' que solo pueda leer la base de datos ecommerce
+db.createUser({user: "pepe", pwd: "asd456", roles: [{role: "read", db: "ecommerce"}]});
+
+//Login con el usuario
+mongo -u pepe -p asd456
+
+//Agregar un producto
+db.productos.insertOne({
+
+    "title": "Cama doble Queen",
+    "price": 3670,
+    "Descripcion": "Descripcion",
+    "code": "Game-12",
+
+});
