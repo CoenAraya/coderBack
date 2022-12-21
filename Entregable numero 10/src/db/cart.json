@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "timestamp": 1668886799005,
+    "products": [
+      {
+        "id": 4,
+        "timestamp": 1668881354246,
+        "title": "Sillon 3 cuerpos",
+        "price": 5000,
+        "description": "Description here",
+        "code": "S3C",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_850462-MLA50947257558_072022-O.webp",
+        "stock": 50
+      }
+    ]
+  }
+]

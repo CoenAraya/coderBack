@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "timestamp": 1668881203390,
+    "title": "Sillon 3 cuerpos",
+    "price": 5000,
+    "description": "Description here",
+    "code": "S3C",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_850462-MLA50947257558_072022-O.webp",
+    "stock": 50
+  },
+  {
+    "id": 2,
+    "timestamp": 1668881186120,
+    "title": "Cama base",
+    "price": 2500,
+    "description": "Description here",
+    "code": "CBASE",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_602000-MLA41758021660_052020-O.webp",
+    "stock": 60
+  },
+  {
+    "id": 3,
+    "timestamp": 1668881195430,
+    "title": "Sillon simple",
+    "price": 6800,
+    "description": "Description here",
+    "code": "S1P",
+    "image": "https://sodimacar.scene7.com/is/image/SodimacArgentina/2359669?fmt=jpg&fit=fit,1&wid=420&hei=420",
+    "stock": 35
+  },
+  {
+    "id": 4,
+    "timestamp": 1668881354246,
+    "title": "Sillon 2 plazas",
+    "price": 13000,
+    "description": "Sillon 2 plazas",
+    "code": "S2P",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_942723-MLA40398901552_012020-O.webp",
+    "stock": 10
+  },
+  {
+    "timestamp": 1668883942034,
+    "id": 6,
+    "title": "Cama King Size",
+    "price": 89000,
+    "description": "Description here",
+    "code": "CKS",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_816607-MLA50775956365_072022-O.webp",
+    "stock": 55
+  }
+]
