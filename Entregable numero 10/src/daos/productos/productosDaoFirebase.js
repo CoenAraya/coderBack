@@ -1,5 +1,5 @@
-const config = require("../../config/config")
-const contenedor = require("../../container/firebase")
+const config = require("../../config.js")
+const contenedor = require("../../container/firebase.js")
 
 const productos = new contenedor("products")
 

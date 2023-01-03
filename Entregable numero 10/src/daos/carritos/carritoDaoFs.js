@@ -1,9 +1,9 @@
-const Contenedor = require('../../container/carrito')
+import { Contenedor } from '../../container/fs.js';
 
-class Carrito extends Contenedor{
+class CarritoDaoFs extends Contenedor{
     constructor(){
-        super('src/db/cart.json')
+        super('src/db/cart.txt');
     }
 }
 
-module.exports = Carrito
+export default CarritoDaoFs;

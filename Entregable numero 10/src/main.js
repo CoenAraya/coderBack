@@ -1,27 +1,36 @@
-//Modules - Class
-const Carrito = require('./daos/carritos/carritoDaoFs')
-const Contenedor = require('./daos/productos/productosDaoFs')
-const express = require('express')
-const { Router } = express
-const app = express()
+//Ruta de Productos************
+
+
+import ContenedorCarrito from './daos/carritos/carritoDaoFs.js';
+
+
+import Contenedor from './daos/productos/productosDaoFs.js';
 
 //Set Class (Desahabilitar p/Firebase-MongoDb)
 const productos = new Contenedor()
-const carrito = new Carrito()
+const carrito = new ContenedorCarrito()
+//Servidor
+
+import express from 'express';
+import config from './config.js'
+
+import { Router } from 'express';
+const app = express();
+
+
 
 //Rutas
 const productosRuta = Router()
 const carritoRuta = Router()
 
 //Admininstrador
-const admin = true
+//const admin = true
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use('/api/productos', productosRuta)
 app.use('/api/carrito', carritoRuta)
 
-const PORT = 8080
 
 //Endpoints para los productos
 productosRuta.get('/', (req, res) => {
@@ -51,17 +60,10 @@ productosRuta.get('/:id', (req, res) => {
 
 productosRuta.put('/:id', async (req, res) => {
     const id = parseInt(req.params.id)
-    const producto = await productos.getById(id)
-    const productoNuevo = {
-        id: id,
-        title: req.body.title,
-        price: req.body.price,
-        thumbnail: req.body.thumbnail
-    };
-    await productos.deleteById(id)
-    await productos.save(productoNuevo)
-    res.send({msj: `Producto ${producto.title} ha sido actuaizado`})
-}) 
+    const producto = req.body;
+    await productos.update(id, producto);
+    res.json(producto)
+    });
 
 
 //Endpoints para el carrito
@@ -79,6 +81,11 @@ carritoRuta.get('/:id/productos', async (req, res) => {
     res.send(await carrito.getById(id))
 })
 
+carritoRuta.get('/', async (req, res) => {
+    const listaCarritos = await carrito.getAll();
+    res.json(listaCarritos);
+})
+
 carritoRuta.post('/:id/productos', async (req, res) => {
     const id = parseInt(req.params.id)
     const producto = req.body;
@@ -93,10 +100,15 @@ carritoRuta.delete('/:id/productos/:idProd', async (req, res) => {
 
 //Errores en el SV
 app.use((req, res, next) => {
-    res.status(404).send({error: -2, descripcion: `Ruta ${req.url} medoto ${req.method} no implementado`});
+    res.status(404).send({error: -2, descripcion: `Ruta ${req.url} metodo ${req.method} no implementado`});
 });
 
-const server = app.listen(PORT, ()=>{
+const server = app.listen(config.PORT, ()=>{
     console.log(`Servido iniciado en: http://localhost:${server.address().port}`)
 })
 server.on("error", error => console.log(error))
+
+
+export {carritoRuta};
+
+

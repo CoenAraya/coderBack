@@ -1,9 +1,9 @@
-const Contenedor = require('../../container/container')
+import  {Contenedor} from '../../container/fs.js'
 
-class Productos extends Contenedor{
+class ProductosDaoFs extends Contenedor{
     constructor(){
         super('src/db/products.json')
     }
 }
 
-module.exports = Productos
+export default ProductosDaoFs ;
